@@ -101,3 +101,10 @@ brfss_df <-
   content()
 ```
 
+Pokemon -- a more complicated API
+```{r}
+pokemon = 
+  GET("https://pokeapi.co/api/v2/pokemon/ditto") |>
+  content()
+```
+Not a dataset or dataframe that we can readily use!
