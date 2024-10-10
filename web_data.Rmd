@@ -36,8 +36,60 @@ https://www.bestplaces.net/cost_of_living/city/new_york/new_york
 
 ```{r}
 read_html("https://www.bestplaces.net/cost_of_living/city/new_york/new_york") |>
-  html_table(header = TRUE) 
+  html_table(header = TRUE) |>
+  first()
 ```
 
 Needs to be tidied, but we have the data
+
+## CSS Selectors
+```{r}
+swm_url = "https://www.imdb.com/list/ls070150896/"
+
+swm_html <- read_html(swm_url)
+```
+
+How to figure out data we actually want?
+```{r}
+swm_title_vec <- 
+  swm_html |>
+  html_elements(".ipc-title-link-wrapper .ipc-title__text") |>
+  html_text()
+
+swm_runtime_vec <- 
+  swm_html |>
+  html_elements(".dli-title-metadata-item:nth-child(2)") |>
+  html_text()
+
+swm_score_vec <- 
+  swm_html |>
+  html_elements(".metacritic-score-box") |>
+  html_text()
+
+swm_df <- tibble(title = swm_title_vec,
+                 runtime = swm_runtime_vec,
+                 score = swm_score_vec)
+```
+
+Trying with another website!
+```{r}
+books_url = "https://books.toscrape.com/"
+
+books_html = read_html(books_url)
+```
+
+```{r}
+books_html |>
+  html_elements(".product_pod a") |>
+  html_text2()
+```
+
+## Using APIs
+
+Get water data from NYC open data
+```{r}
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") |> 
+  content(as = "parsed")
+```
 
