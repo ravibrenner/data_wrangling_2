@@ -11,6 +11,8 @@ library(rvest)
 library(httr)
 ```
 
+## Web scraping basics
+
 Load data from website with tables on it
 ```{r}
 url = "http://samhda.s3-us-gov-west-1.amazonaws.com/s3fs-public/field-uploads/2k15StateFiles/NSDUHsaeShortTermCHG2015.htm"
@@ -29,4 +31,19 @@ marj_use_df =
   slice(-1)
 ```
 
+Learning assessment: Create a data frame that contains the cost of living table for New York from this page.
+https://www.bestplaces.net/cost_of_living/city/new_york/new_york
+```{r}
+url = "https://www.bestplaces.net/cost_of_living/city/new_york/new_york"
+
+ny_col <- read_html(url)
+```
+
+Try to get table
+```{r}
+ny_col |>
+  html_table(header = TRUE) 
+```
+
+Needs to be tidied, but we have the data
 
