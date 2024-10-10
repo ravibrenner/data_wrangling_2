@@ -1,0 +1,32 @@
+---
+title: "Reading data from the web"
+author: "Ravi Brenner"
+date: "2024-10-10"
+output: github_document
+---
+
+```{r setup}
+library(tidyverse)
+library(rvest)
+library(httr)
+```
+
+Load data from website with tables on it
+```{r}
+url = "http://samhda.s3-us-gov-west-1.amazonaws.com/s3fs-public/field-uploads/2k15StateFiles/NSDUHsaeShortTermCHG2015.htm"
+
+drug_use_html = read_html(url)
+
+drug_use_html
+```
+
+Attempt to get pieces I actually need:
+```{r}
+marj_use_df = 
+  drug_use_html |> 
+  html_table() |> 
+  first() |>
+  slice(-1)
+```
+
+
