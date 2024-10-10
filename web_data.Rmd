@@ -90,6 +90,14 @@ Get water data from NYC open data
 ```{r}
 nyc_water = 
   GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") |> 
-  content(as = "parsed")
+  content()
+```
+
+BRFSS data
+```{r}
+brfss_df <-
+  GET("https://chronicdata.cdc.gov/resource/acme-vg9e.csv",
+      query = list("$limit" = 5000)) |>
+  content()
 ```
 
