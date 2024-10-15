@@ -1,0 +1,12 @@
+---
+title: "Strings and factors"
+author: "Ravi Brenner"
+date: "2024-10-15"
+output: github_document
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+library(p8105.datasets)
+```
