@@ -120,6 +120,19 @@ string_vec = c(
 str_detect(string_vec, "\\[")
 ```
 
+## Factors
+Apparently people hate these
+
+```{r}
+sex_vec <- factor(c("male", "male", "female", "female"))
+
+as.numeric(sex_vec)
+```
+
+Relevel
+```{r}
+sex_vec = fct_relevel(sex_vec, "male")
+```
 
 
 
