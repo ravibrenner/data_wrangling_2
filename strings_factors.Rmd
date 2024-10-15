@@ -10,3 +10,120 @@ library(tidyverse)
 library(rvest)
 library(p8105.datasets)
 ```
+
+## Strings
+
+```{r}
+string_vec <- c("my", "name", "is", "Ravi")
+```
+
+```{r}
+str_detect(string_vec, "a")
+str_detect(string_vec, "Ravi")
+str_detect(string_vec, " Ravi")
+str_detect(string_vec, "ravi")
+```
+
+```{r}
+str_replace(string_vec, "Ravi", "ravi")
+str_replace(string_vec, "a", "A")
+```
+
+Those were basic/easy. Finding exact matches
+
+Now it gets more complicated
+```{r}
+string_vec = c(
+  "i think we all rule for participating",
+  "i think i have been caught",
+  "i think this will be quite fun actually",
+  "it will be fun, i think"
+  )
+```
+
+```{r}
+str_detect(string_vec, "i think")
+
+# line starts with / beginning of the line
+str_detect(string_vec, "^i think")
+
+# line ends with / end of the line
+str_detect(string_vec, "i think$")
+```
+
+
+```{r}
+string_vec = c(
+  "Time for a Pumpkin Spice Latte!",
+  "went to the #pumpkinpatch last weekend",
+  "Pumpkin Pie is obviously the best pie",
+  "SMASHING PUMPKINS -- LIVE IN CONCERT!!"
+  )
+```
+
+```{r}
+str_detect(string_vec, "pumpkin")
+str_detect(string_vec, "Pumpkin")
+str_detect(string_vec, "PUMPKIN")
+
+# want multiple options
+str_detect(string_vec, "[Pp]umpkin")
+```
+
+Can work with numbers and letters in specific arrangement
+
+```{r}
+string_vec = c(
+  '7th inning stretch',
+  '1st half soon to begin. Texas won the toss.',
+  'she is 5 feet 4 inches tall',
+  '3AM - cant sleep :('
+  )
+```
+
+Want: number followed by two letters
+
+This is saying: any number 0-9, followed by and number a-z (case sensitive)
+```{r}
+str_detect(string_vec, "[0-9][a-z]")
+```
+
+```{r}
+str_detect(string_vec, "[0-9][a-zA-Z]")
+```
+
+```{r}
+string_vec = c(
+  'Its 7:11 in the evening',
+  'want to go to 7-11?',
+  'my flight is AA711',
+  'NetBios: scanning ip 203.167.114.66'
+  )
+```
+
+can use '.' to match any character
+```{r}
+str_detect(string_vec, "7.11")
+```
+
+Then things can get really strange
+
+use "\" to use a special character. Since "\" is itself a special character, we need to put "\\".
+```{r}
+string_vec = c(
+  'The CI is [2, 5]',
+  ':-]',
+  ':-[',
+  'I found the answer on pages [6-7]'
+  )
+
+str_detect(string_vec, "\\[")
+```
+
+
+
+
+
+
+
+
